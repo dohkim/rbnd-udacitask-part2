@@ -16,7 +16,7 @@ class UdaciList
     end
   end
   def delete(index)
-    if @items.length < index - 1
+    if @items.length < index 
       raise UdaciListErrors::IndexExceedsListSize, "No task in ##{index} "
     end
     @items.delete_at(index - 1)

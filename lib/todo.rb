@@ -4,7 +4,7 @@ class TodoItem
   PRIORITY = ["high", "medium", "low", nil]
   def initialize(description, options={})
     @description = description
-    @due = options[:due] ? Date.parse(options[:due]) : options[:due]
+    @due = options[:due] ? date_format(options[:due]) : options[:due]
     if PRIORITY.include? options[:priority]
       @priority = options[:priority]
     else
