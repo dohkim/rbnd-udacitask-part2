@@ -1,11 +1,15 @@
 class TodoItem
   include Listable
   attr_reader :description, :due, :priority
-
+  PRIORITY = ["high", "medium", "low", nil]
   def initialize(description, options={})
     @description = description
     @due = options[:due] ? Date.parse(options[:due]) : options[:due]
-    @priority = options[:priority]
+    if PRIORITY.include? options[:priority]
+      @priority = options[:priority]
+    else
+      raise UdaciListErrors::InvalidPriorityValue, "#{options[:priority]} is not available for priority"
+    end
   end
 
   def details
