@@ -1,13 +1,18 @@
 # What you added to Udacitask 2.0
 # -------------------------------------------------------
 1. What is the gem of your choice and how did you use it?
+Terminal-Table, Formatador, Highline....etc looks similar, I picked simple one
+I used Terminal-Table Gem to display Item
+I declared global variable to save data to rows and after saving data, It displays
+
 2. Describe the 2 features you added to the project.
-  a) Feature 1...
-  b) Feature 2...
+  a) Multiple delete : I changed delete function that able to receive multiple parameter like (*args),
+    and it srots reverse first and then delete item.
+  b) Change priority : Checking first if Item type is todo, if it is not, InvalidItemType error raise.
 
 # REFLECTIONS
 # -------------------------------------------------------
-1. How long did you spend working on this project?
-2. What was the most rewarding challenge you conquered?
-3. What two additional features did you build? Why?
-4. Where do you still have room to grow?
+1. How long did you spend working on this project? 3~4 Hours
+2. What was the most rewarding challenge you conquered? Passing multiple parameter with *
+3. What two additional features did you build? Why? Multiple delete, change priority
+4. Where do you still have room to grow? Change Due date
