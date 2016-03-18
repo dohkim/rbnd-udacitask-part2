@@ -11,6 +11,10 @@ class TodoItem
       raise UdaciListErrors::InvalidPriorityValue, "#{options[:priority]} is not available for priority"
     end
   end
+  def priority_change(priority)
+    @priority=priority
+  end
+  
 
   def details
     format_description + "due: " +

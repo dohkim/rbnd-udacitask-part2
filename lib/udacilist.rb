@@ -6,6 +6,7 @@ class UdaciList
     @title = options[:title]
     @items = []
   end
+  
   def add(type, description, options={})
     type = type.downcase
     case type
@@ -15,12 +16,14 @@ class UdaciList
     else raise UdaciListErrors::InvalidItemType, "#{type} is not right type" 
     end
   end
+  
   def delete(index)
     if @items.length < index 
       raise UdaciListErrors::IndexExceedsListSize, "No task in ##{index} "
     end
     @items.delete_at(index - 1)
   end
+  
   def all
     display_form
     @items.each_with_index do |item, position|
@@ -36,11 +39,17 @@ class UdaciList
     else raise UdaciListErrors::InvalidItemType, "#{item_type} is not right type" 
     end  
     display_form
-    puts "Search #{item_type}"
+    puts "Search #{item_type.capitalize} Type"
     filter.each_with_index do |item, position|
       puts "#{position + 1}) #{item.details}"
     end
   end
+  
+  def change_priority(index, priority)
+    raise UdaciListErrors::InvalidItemType, "#{@items[index-1].class} has no priority" if @items[index-1].class != TodoItem
+    @items[index-1].priority_change(priority)
+  end
+  
   
   def display_form
     puts "-" * @title.length
