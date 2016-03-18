@@ -53,3 +53,8 @@ new_list.filter("event")
 
 #CAHNGE_PRIORTY
 # new_list.change_priority(1, "high")
+
+#MULTIPLE DELETE
+# new_list.all
+# new_list.delete(3,5,7)
+# new_list.all

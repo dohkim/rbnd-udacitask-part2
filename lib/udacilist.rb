@@ -20,11 +20,17 @@ class UdaciList
     end
   end
   
-  def delete(index)
-    if @items.length < index 
-      raise UdaciListErrors::IndexExceedsListSize, "No task in ##{index} "
+  def delete(*args)
+    #Reverse sort by number if delete small number of index first, 
+    #it will be complicate deleting big number of index
+    args.sort! {|a,b| b <=> a}
+
+    args.each do |index|
+      if @items.length < index 
+        raise UdaciListErrors::IndexExceedsListSize, "No task in ##{index} "
+      end
+      @items.delete_at(index-1)
     end
-    @items.delete_at(index - 1)
   end
   
   def all
