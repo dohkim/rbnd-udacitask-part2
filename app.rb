@@ -2,6 +2,8 @@ require 'bundler/setup'
 require 'chronic'
 require 'colorize'
 # Find a third gem of your choice and add it to your project
+require 'terminal-table'
+
 require 'date'
 require_relative "lib/listable"
 require_relative "lib/errors"
@@ -49,5 +51,5 @@ new_list.all
 new_list.filter("event")
 
 
-#change priority
-new_list.change_priority(1, "high")
+#CAHNGE_PRIORTY
+# new_list.change_priority(1, "high")

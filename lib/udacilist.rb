@@ -1,5 +1,8 @@
 class UdaciList
   attr_reader :title, :items
+  #Table for terminal table
+  $rows = []
+  
 
   def initialize(options={})
     options[:title] ||= "Untitled List"  #Set Untitled List if title has no name
@@ -25,10 +28,10 @@ class UdaciList
   end
   
   def all
-    display_form
     @items.each_with_index do |item, position|
-      puts "#{position + 1}) #{item.details}"
+      $rows << [position + 1 , item.details]
     end
+    display_form
   end
   
   def filter(item_type)
@@ -38,11 +41,10 @@ class UdaciList
     when "link" then filter = @items.select {|item| item.class == LinkItem }
     else raise UdaciListErrors::InvalidItemType, "#{item_type} is not right type" 
     end  
-    display_form
-    puts "Search #{item_type.capitalize} Type"
     filter.each_with_index do |item, position|
-      puts "#{position + 1}) #{item.details}"
+       $rows << [position + 1 , item.details ]
     end
+    display_form
   end
   
   def change_priority(index, priority)
@@ -52,9 +54,10 @@ class UdaciList
   
   
   def display_form
-    puts "-" * @title.length
-    puts @title
-    puts "-" * @title.length
+    table = Terminal::Table.new :title => @title, :headings => ["#","Description"], :rows => $rows
+    puts table
+    $rows=[]
+    puts
   end
   
 end
