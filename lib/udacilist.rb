@@ -22,11 +22,30 @@ class UdaciList
     @items.delete_at(index - 1)
   end
   def all
-    puts "-" * @title.length
-    puts @title
-    puts "-" * @title.length
+    display_form
     @items.each_with_index do |item, position|
       puts "#{position + 1}) #{item.details}"
     end
   end
+  
+  def filter(item_type)
+    case item_type
+    when "todo" then filter = @items.select {|item| item.class == TodoItem }
+    when "event" then filter = @items.select {|item| item.class == EventItem }
+    when "link" then filter = @items.select {|item| item.class == LinkItem }
+    else raise UdaciListErrors::InvalidItemType, "#{item_type} is not right type" 
+    end  
+    display_form
+    puts "Search #{item_type}"
+    filter.each_with_index do |item, position|
+      puts "#{position + 1}) #{item.details}"
+    end
+  end
+  
+  def display_form
+    puts "-" * @title.length
+    puts @title
+    puts "-" * @title.length
+  end
+  
 end
