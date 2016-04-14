@@ -17,7 +17,7 @@ class TodoItem
   
 
   def details
-    format_description + "due: " +
+    "(Todo) " + format_description + "due: " +
     format_date +
     format_priority
   end
